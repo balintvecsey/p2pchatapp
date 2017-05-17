@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <title>P2P Chat App</title>
+</head>
+<body>
+<h1 th:text="'Enter'"></h1>
+<form th:action="@{/enter/hit}" >
+  Choose your name: <input type="text" name="username" th:value="${username}"/>
+  <input type="submit" value="Enter" />
+</form>
+</body>
+</html>
