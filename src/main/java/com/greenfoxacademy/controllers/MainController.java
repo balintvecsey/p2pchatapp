@@ -8,9 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * Created by Bálint on 2017. 05. 17..
@@ -37,7 +35,10 @@ public class MainController {
   }
 
   @GetMapping("/enter")
-  public String enter() {
+  public String enter(Model model) {
+    if(!(chatUserRepo.findOne(1L) == null || !chatUserRepo.findOne(1L).getUsername().equals(""))) {
+      model.addAttribute("username", chatUserRepo.findOne(1L).getUsername());
+    }
     return "enter";
   }
 
@@ -54,15 +55,15 @@ public class MainController {
 
   @GetMapping("enter/hit")
   public String enterHit(String username) {
+    user.setUsername(username);
+    user.setId(1L);
+    chatUserRepo.save(user);
     if(username.equals("")) {
       System.out.println(new Timestamp(System.currentTimeMillis()) + " INFO save:false redirect:/enter from:/enter/hit");
       return "redirect:/enter";
     } else {
-      user.setUsername(username);
-      user.setId(1L);
-      chatUserRepo.save(user);
       System.out.println(new Timestamp(System.currentTimeMillis()) + " INFO save:true redirect:/ from:/enter/hit");
+      return "redirect:/";
     }
-    return "redirect:/";
   }
 }
