@@ -5,6 +5,10 @@
   <title>P2P Chat App</title>
 </head>
 <body>
-<h1>Peer to Peer Chat program</h1>
+<h1 th:text="'Peer to Peer Chat program'"></h1>
+<form th:action="@{/update/hit}" >
+  Your username: <input type="text" name="username" th:value="${username}"/>
+  <input type="submit" value="Enter" />
+</form>
 </body>
 </html>

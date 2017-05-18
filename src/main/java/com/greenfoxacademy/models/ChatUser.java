@@ -6,21 +6,26 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.stereotype.Component;
 
 /**
  * Created by Bálint on 2017. 05. 17..
  */
-@Entity
 @Getter
 @Setter
-public class User {
+@Entity
+@Component
+public class ChatUser {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
   private long id;
   private String username;
 
-  public User(String username) {
+  public ChatUser() {
+
+  }
+
+  public ChatUser(String username) {
     this.username = username;
   }
 }
