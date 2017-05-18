@@ -3,6 +3,7 @@ package com.greenfoxacademy.controllers;
 import com.greenfoxacademy.models.ErrorMessage;
 import com.greenfoxacademy.models.LogMessage;
 import com.greenfoxacademy.models.ChatUser;
+import com.greenfoxacademy.repository.ChatMessageRepo;
 import com.greenfoxacademy.repository.ChatUserRepo;
 import java.sql.Timestamp;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,10 @@ public class MainController {
 
   @Autowired
   private ChatUserRepo chatUserRepo;
+
+  @Autowired
+  private ChatMessageRepo chatMessageRepo;
+
   @Autowired
   private ChatUser user;
 
@@ -33,6 +38,7 @@ public class MainController {
       ErrorMessage e = new ErrorMessage(error);
       model.addAttribute("username", chatUserRepo.findOne(1L).getUsername());
       model.addAttribute("error", e.getError());
+      model.addAttribute("messages", chatMessageRepo.findAll());
       System.out.println(new LogMessage(new Timestamp(System.currentTimeMillis()), loglevel,
           "/", "GET", ""));
       return "index";
@@ -51,7 +57,7 @@ public class MainController {
     if(username.equals("")) {
       System.out.println(new Timestamp(System.currentTimeMillis()) + " INFO save:false redirect:/enter from:/enter/hit");
       return "redirect:/?error=The?username?field?is?empty";
-    } else if(chatUserRepo.findOne(1L).getUsername().equals(username)) {
+    } else if(chatUserRepo.findOne(1L) != null && chatUserRepo.findOne(1L).getUsername().equals(username)) {
       System.out.println(new Timestamp(System.currentTimeMillis()) + " " + username + " INFO find:true redirect:/ from:/");
       return "redirect:/";
     } else {
@@ -65,6 +71,9 @@ public class MainController {
     if(username.equals("")) {
       System.out.println(new Timestamp(System.currentTimeMillis()) + " INFO save:false redirect:/enter from:/enter/hit");
       return "redirect:/enter?error=The?username?field?is?empty";
+    } else if(chatUserRepo.findOne(1L) != null && chatUserRepo.findOne(1L).getUsername().equals(username)) {
+      System.out.println(new Timestamp(System.currentTimeMillis()) + " " + username + " INFO find:true redirect:/ from:/enter/hit");
+      return "redirect:/";
     } else {
       user.setUsername(username);
       user.setId(1L);
