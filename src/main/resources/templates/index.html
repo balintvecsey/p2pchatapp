@@ -5,11 +5,11 @@
   <title>P2P Chat App</title>
 </head>
 <body>
-<p th:if="${currentuser} == ''" th:text="'The username field is empty'"></p>
+<p th:text="${error}"></p>
 <h1 th:text="'Peer to Peer Chat program'"></h1>
 <form th:action="@{/update/hit}" >
   Your username: <input type="text" name="username" th:value="${username}"/>
-  <input type="submit" value="Updater" />
+  <input type="submit" value="Update" />
 </form>
 </body>
 </html>
