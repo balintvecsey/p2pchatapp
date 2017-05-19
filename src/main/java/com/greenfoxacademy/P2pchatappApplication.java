@@ -23,6 +23,8 @@ public class P2pchatappApplication implements CommandLineRunner{
 
 	@Override
 	public void run(String... args) throws Exception {
-		chatMessageRepo.save(new ChatMessage("App", "Hi there! Submit your message using the send button!"));
+		if(chatMessageRepo.findByUsername("App") == null) {
+			chatMessageRepo.save(new ChatMessage(1L,"App", "Hi there! Submit your message using the send button!"));
+		}
 	}
 }

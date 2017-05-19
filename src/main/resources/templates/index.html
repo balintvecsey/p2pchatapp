@@ -17,5 +17,9 @@
     <p th:text="${message.text}"></p>
   </li>
 </ul>
+<form th:action="@{/send/hit}">
+  <textarea rows="3" cols="25" name="text" th:value="${text}"/>
+  <input type="submit" value="Send" />
+</form>
 </body>
 </html>

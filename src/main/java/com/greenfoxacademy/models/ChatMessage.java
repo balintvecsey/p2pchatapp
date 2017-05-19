@@ -19,17 +19,24 @@ import org.springframework.stereotype.Component;
 public class ChatMessage {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
   long id;
   String username;
   String text;
   Timestamp timestamp;
 
   public ChatMessage() {
-    timestamp = new Timestamp(System.currentTimeMillis());
+
   }
 
   public ChatMessage(String username, String text) {
+    this.username = username;
+    this.text = text;
+    timestamp = new Timestamp(System.currentTimeMillis());
+    id = (long) (Math.random() * 9000000L) + 1000000L;
+  }
+
+  public ChatMessage(long id, String username, String text) {
+    this.id = id;
     this.username = username;
     this.text = text;
   }

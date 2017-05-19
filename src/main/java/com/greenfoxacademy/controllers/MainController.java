@@ -1,5 +1,6 @@
 package com.greenfoxacademy.controllers;
 
+import com.greenfoxacademy.models.ChatMessage;
 import com.greenfoxacademy.models.ErrorMessage;
 import com.greenfoxacademy.models.LogMessage;
 import com.greenfoxacademy.models.ChatUser;
@@ -81,5 +82,13 @@ public class MainController {
       System.out.println(new Timestamp(System.currentTimeMillis()) + " INFO save:true redirect:/ from:/enter/hit");
       return "redirect:/";
     }
+  }
+
+  @GetMapping("/send/hit")
+  public String saveMessage(String text) {
+    ChatMessage newmessage = new ChatMessage(chatUserRepo.findOne(1L).getUsername(), text);
+    chatMessageRepo.save(newmessage);
+    System.out.println(newmessage.getId());
+    return "redirect:/";
   }
 }
