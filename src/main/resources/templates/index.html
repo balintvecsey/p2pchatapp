@@ -2,14 +2,18 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}" rel="stylesheet"/>
   <title>P2P Chat App</title>
 </head>
 <body>
 <p th:text="${error}"></p>
 <h1 th:text="'Peer to Peer Chat program'"></h1>
-<form th:action="@{/update/hit}" >
-  Your username: <input type="text" name="username" th:value="${username}"/>
-  <input type="submit" value="Update" />
+<form class="form-inline" th:action="@{/update/hit}" >
+  <div class="form-group">
+  Your username: <input class="form-control" type="text" name="username" th:value="${username}"/>
+  <input class="btn btn-success" role="button" type="submit" value="Update" />
+  </div>
 </form>
 <ul th:each="message: ${messages}">
   <li>

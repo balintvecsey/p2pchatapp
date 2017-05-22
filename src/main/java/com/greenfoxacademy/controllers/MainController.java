@@ -1,11 +1,13 @@
 package com.greenfoxacademy.controllers;
 
+import com.greenfoxacademy.models.ChatClient;
 import com.greenfoxacademy.models.ChatMessage;
 import com.greenfoxacademy.models.ErrorMessage;
 import com.greenfoxacademy.models.LogMessage;
 import com.greenfoxacademy.models.ChatUser;
 import com.greenfoxacademy.repository.ChatMessageRepo;
 import com.greenfoxacademy.repository.ChatUserRepo;
+import com.greenfoxacademy.service.ChatService;
 import java.sql.Timestamp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,6 +31,12 @@ public class MainController {
 
   @Autowired
   private ChatUser user;
+
+  @Autowired
+  ChatClient client;
+
+  @Autowired
+  private ChatService chatService;
 
   @GetMapping
   public String main(Model model, @RequestParam(name = "error", required = false) String error){
@@ -88,6 +96,8 @@ public class MainController {
   public String saveMessage(String text) {
     ChatMessage newmessage = new ChatMessage(chatUserRepo.findOne(1L).getUsername(), text);
     chatMessageRepo.save(newmessage);
+    client.setId(System.getenv("CHAT_APP_UNIQUE_ID"));
+    chatService.sendTo(newmessage, client);
     System.out.println(newmessage.getId());
     return "redirect:/";
   }
