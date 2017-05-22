@@ -32,12 +32,6 @@ public class MainController {
   @Autowired
   private ChatUser user;
 
-  @Autowired
-  ChatClient client;
-
-  @Autowired
-  private ChatService chatService;
-
   @GetMapping
   public String main(Model model, @RequestParam(name = "error", required = false) String error){
     String loglevel = System.getenv("CHAT_APP_LOGLEVEL");
@@ -96,6 +90,9 @@ public class MainController {
   public String saveMessage(String text) {
     ChatMessage newmessage = new ChatMessage(chatUserRepo.findOne(1L).getUsername(), text);
     chatMessageRepo.save(newmessage);
+    ChatClient client = new ChatClient();
+    ChatService chatService = new ChatService();
+    
     client.setId(System.getenv("CHAT_APP_UNIQUE_ID"));
     chatService.sendTo(newmessage, client);
     System.out.println(newmessage.getId());
