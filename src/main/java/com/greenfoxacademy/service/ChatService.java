@@ -3,6 +3,7 @@ package com.greenfoxacademy.service;
 import com.greenfoxacademy.models.ChatClient;
 import com.greenfoxacademy.models.ChatMessage;
 import com.greenfoxacademy.models.ChatReceived;
+import com.greenfoxacademy.models.StatusMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.client.RestTemplate;
 
@@ -17,10 +18,9 @@ public class ChatService {
   @Autowired
   private ChatReceived chatReceived;
 
-  public ChatReceived sendTo(ChatMessage message, ChatClient client) {
+  public void sendTo(ChatMessage message, ChatClient client) {
     chatReceived.setMessage(message);
     chatReceived.setClient(client);
-    ChatReceived sentMessage = restTemplate.postForObject(url1, chatReceived, ChatReceived.class);
-    return sentMessage;
+    StatusMessage messsageResponse = restTemplate.postForObject(url1, chatReceived, StatusMessage.class);
   }
 }
