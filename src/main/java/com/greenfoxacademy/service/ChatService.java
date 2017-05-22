@@ -11,6 +11,7 @@ import org.springframework.web.client.RestTemplate;
  */
 public class ChatService {
   private String url = "https://peertopeerchatapp.herokuapp.com/api/message/receive";
+  private String url1 = "http://p2p-chat-seed0forever.herokuapp.com/api/message/receive";
   private RestTemplate restTemplate = new RestTemplate();
 
   @Autowired
@@ -19,7 +20,7 @@ public class ChatService {
   public ChatReceived sendTo(ChatMessage message, ChatClient client) {
     chatReceived.setMessage(message);
     chatReceived.setClient(client);
-    ChatReceived sentMessage = restTemplate.postForObject(url, chatReceived, ChatReceived.class);
+    ChatReceived sentMessage = restTemplate.postForObject(url1, chatReceived, ChatReceived.class);
     return sentMessage;
   }
 }

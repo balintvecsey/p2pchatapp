@@ -92,7 +92,7 @@ public class MainController {
     chatMessageRepo.save(newmessage);
     ChatClient client = new ChatClient();
     ChatService chatService = new ChatService();
-    
+
     client.setId(System.getenv("CHAT_APP_UNIQUE_ID"));
     chatService.sendTo(newmessage, client);
     System.out.println(newmessage.getId());
