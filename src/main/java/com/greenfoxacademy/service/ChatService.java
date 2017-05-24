@@ -20,6 +20,6 @@ public class ChatService {
     System.out.println("in sendto" + message);
     jsonMessage = new JsonMessage(message, client);
     System.out.println(jsonMessage);
-    StatusMessage messsageResponse = restTemplate.postForObject(georgeUrl, jsonMessage, StatusMessage.class);
+    StatusMessage messsageResponse = restTemplate.postForObject(marciUrl, jsonMessage, StatusMessage.class);
   }
 }

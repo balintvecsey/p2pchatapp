@@ -32,7 +32,8 @@
     <div class="container">
       <div class="row">
         <div class="panel panel-default">
-          <div class="panel-heading" th:text="'Messages'"></div>
+          <div class="panel-heading" th:text="'Messages'" >
+          </div>
           <div class="panel-body">
             <div class="container">
               <div class="row message-bubble" th:each="message: ${messages}">
@@ -52,7 +53,7 @@
         </div>
       </div>
     </div>
-<a class="glyphicon glyphicon-refresh" role="button" href="/"></a>
-</div>
+    <a class="glyphicon glyphicon-refresh" role="button" href="/" ></a>
+  </div>
 </body>
 </html>
