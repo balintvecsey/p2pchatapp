@@ -38,10 +38,10 @@ public class ChatRestController {
       chatService.sendTo(input.getMessage(), input.getClient());
       if (message.getUsername() != null && message.getText() != null) {
         chatMessageRepo.save(message);
-        return new StatusMessage("ok", HttpStatus.OK);
+        return new StatusMessage("ok");
       }
-      return new StatusMessage("error", HttpStatus.BAD_REQUEST);
+      return new StatusMessage("error");
     }
-    return new StatusMessage("ok", HttpStatus.OK);
+    return new StatusMessage("ok");
   }
 }

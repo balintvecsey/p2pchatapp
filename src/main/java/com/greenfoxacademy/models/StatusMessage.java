@@ -11,14 +11,12 @@ import org.springframework.http.HttpStatus;
 @Setter
 public class StatusMessage {
   private String status;
-  private HttpStatus statusCode;
 
   public StatusMessage() {
   }
 
-  public StatusMessage(String status, HttpStatus statusCode) {
+  public StatusMessage(String status) {
     this.status = status;
-    this.statusCode = statusCode;
   }
 
 }
