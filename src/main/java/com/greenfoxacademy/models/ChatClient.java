@@ -13,4 +13,10 @@ import org.springframework.stereotype.Component;
 public class ChatClient {
   String id;
 
+  @Override
+  public String toString() {
+    return "ChatClient{" +
+        "id='" + id + '\'' +
+        '}';
+  }
 }

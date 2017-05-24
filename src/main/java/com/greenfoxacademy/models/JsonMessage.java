@@ -10,12 +10,27 @@ import org.springframework.stereotype.Component;
  * Created by Bálint on 2017. 05. 22..
  */
 @Getter
-@Setter
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Component
-public class ChatReceived {
+public class JsonMessage {
   private ChatMessage message;
   private ChatClient client;
 
+  public void setMessage(ChatMessage message) {
+    this.message = message;
+  }
+
+  public void setClient(ChatClient client) {
+    this.client = client;
+  }
+
+  @Override
+  public String toString() {
+    return "JsonMessage{" +
+        "message=" + message +
+        ", client=" + client +
+        '}';
+  }
 }

@@ -2,7 +2,7 @@ package com.greenfoxacademy.controllers;
 
 import com.greenfoxacademy.models.ChatClient;
 import com.greenfoxacademy.models.ChatMessage;
-import com.greenfoxacademy.models.ChatReceived;
+import com.greenfoxacademy.models.JsonMessage;
 import com.greenfoxacademy.models.StatusMessage;
 import com.greenfoxacademy.repository.ChatMessageRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +28,7 @@ public class ChatRestController {
 
   @CrossOrigin("*")
   @PostMapping("/api/message/receive")
-  public StatusMessage receiveMessage(@RequestBody ChatReceived input) {
+  public StatusMessage receiveMessage(@RequestBody JsonMessage input) {
     ChatMessage message = input.getMessage();
     if (message.getUsername() != null && message.getText() != null) {
       chatMessageRepo.save(message);

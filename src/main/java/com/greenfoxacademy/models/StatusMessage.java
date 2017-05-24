@@ -11,6 +11,9 @@ import lombok.Setter;
 public class StatusMessage {
   private String status;
 
+  public StatusMessage() {
+  }
+
   public StatusMessage(String status) {
     this.status = status;
   }

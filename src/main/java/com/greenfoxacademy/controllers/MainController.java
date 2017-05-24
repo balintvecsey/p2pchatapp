@@ -94,8 +94,8 @@ public class MainController {
     ChatService chatService = new ChatService();
 
     client.setId(System.getenv("CHAT_APP_UNIQUE_ID"));
+    System.out.println(newmessage);
     chatService.sendTo(newmessage, client);
-    System.out.println(newmessage.getId());
     return "redirect:/";
   }
 }
