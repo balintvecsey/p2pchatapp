@@ -3,17 +3,23 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+  <link rel="icon" href="../../favicon.ico" />
   <link th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}" rel="stylesheet"/>
+  <link href="signin.css" rel="stylesheet" />
   <title>P2P Chat App</title>
 </head>
 <body>
+<div class="container">
 <p th:text="${error}"></p>
-<h1 th:text="'Enter'"></h1>
-<form class="form-inline" th:action="@{/enter/hit}" >
-  <div class="form-group">
-  Choose your name: <input class="form-control" type="text" name="username" th:value="${username}"/>
-  <input class="btn btn-success" role="button" type="submit" value="Enter" />
-  </div>
+<form class="form-signin" th:action="@{/enter/hit}" >
+  <h2 th:text="'Enter'"></h2>
+  <label for="inputEmail" class="sr-only">Username</label>
+  <input type="text" id="inputEmail" name="username" th:value="${username}" class="form-control" placeholder="Choose your name"/>
+  <br />
+  <input class="btn btn-lg btn-primary btn-block" role="button" type="submit" value="Enter" />
 </form>
+</div>
 </body>
 </html>

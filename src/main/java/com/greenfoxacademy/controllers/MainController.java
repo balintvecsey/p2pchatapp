@@ -52,7 +52,7 @@ public class MainController {
   public String enter(Model model, @RequestParam(name = "error", required = false) String error) {
     ErrorMessage e = new ErrorMessage(error);
     model.addAttribute("error", e.getError());
-    return "enter";
+    return "newenter";
   }
 
   @GetMapping("/update/hit")
